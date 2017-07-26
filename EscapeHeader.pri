@@ -8844,6 +8844,7 @@ HEADERS += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h" \
 	"$$EscapeRootPath/Source/Escape/Escape.h" \
 	"$$EscapeRootPath/Source/Escape/EscapeGameModeBase.h" \
+	"$$EscapeRootPath/Source/Escape/Grabber.h" \
 	"$$EscapeRootPath/Source/Escape/OpenDoor.h" \
 	"$$EscapeRootPath/Source/Escape/PositionReport.h" \
  

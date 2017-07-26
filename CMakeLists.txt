@@ -6841,6 +6841,7 @@ set(SOURCE_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp"
 	"${GAME_ROOT_PATH}/Source/Escape/Escape.cpp"
 	"${GAME_ROOT_PATH}/Source/Escape/EscapeGameModeBase.cpp"
+	"${GAME_ROOT_PATH}/Source/Escape/Grabber.cpp"
 	"${GAME_ROOT_PATH}/Source/Escape/OpenDoor.cpp"
 	"${GAME_ROOT_PATH}/Source/Escape/PositionReport.cpp"
  )
@@ -15691,6 +15692,7 @@ set(HEADER_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h"
 	"${GAME_ROOT_PATH}/Source/Escape/Escape.h"
 	"${GAME_ROOT_PATH}/Source/Escape/EscapeGameModeBase.h"
+	"${GAME_ROOT_PATH}/Source/Escape/Grabber.h"
 	"${GAME_ROOT_PATH}/Source/Escape/OpenDoor.h"
 	"${GAME_ROOT_PATH}/Source/Escape/PositionReport.h"
  )

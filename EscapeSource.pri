@@ -6830,6 +6830,7 @@ SOURCES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp" \
 	"$$EscapeRootPath/Source/Escape/Escape.cpp" \
 	"$$EscapeRootPath/Source/Escape/EscapeGameModeBase.cpp" \
+	"$$EscapeRootPath/Source/Escape/Grabber.cpp" \
 	"$$EscapeRootPath/Source/Escape/OpenDoor.cpp" \
 	"$$EscapeRootPath/Source/Escape/PositionReport.cpp" \
  

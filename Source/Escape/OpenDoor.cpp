@@ -37,7 +37,6 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
         LastDoorOpenTime = GetWorld()->GetTimeSeconds();
     }
 
-    // check if its time to close the door
     if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay) {
         CloseTheDoor();
     }
