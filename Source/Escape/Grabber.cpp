@@ -11,8 +11,6 @@ UGrabber::UGrabber()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -21,9 +19,45 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+    FindPhysicsHandle();
+    FindInputComponent();
 }
 
+void UGrabber::Grab() {
+    UE_LOG(LogTemp, Warning, TEXT("Grab delegate called!"))
+}
+
+void UGrabber::Release() {
+    UE_LOG(LogTemp, Warning, TEXT("Release delegate called!"))
+}
+
+void UGrabber::FindInputComponent() {
+    // Look for attached InputComponent (only appears in runtime)
+    InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+
+    if (InputComponent) {
+        UE_LOG(LogTemp, Warning, TEXT("Input component found!"))
+
+        /// Bind the input axis
+        InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+        InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
+
+    } else {
+        UE_LOG(LogTemp, Error, TEXT("Cannot find InputComponent for object %s"), *(GetOwner()->GetName()))
+    }
+}
+
+void UGrabber::FindPhysicsHandle() {
+    /// Look for attached Physics Handle
+    PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+
+    if (PhysicsHandle) {
+        UE_LOG(LogTemp, Warning, TEXT("Physics handle found!"))
+
+    } else {
+        UE_LOG(LogTemp, Error, TEXT("Cannot find PhysicsHandle in object = %s"), *(GetOwner()->GetName()))
+    }
+}
 
 // Called every frame
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -38,7 +72,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
                 OUT PlayerViewRotation
                 );
 
-    UE_LOG(LogTemp, Warning, TEXT("Grabber location = %s, rotation = %s"), *PlayerViewLocation.ToString(), *PlayerViewRotation.ToString());
+//    UE_LOG(LogTemp, Warning, TEXT("Grabber location = %s, rotation = %s"), *PlayerViewLocation.ToString(), *PlayerViewRotation.ToString());
 
     // draw debug line
     FVector LineTraceEnd = PlayerViewLocation + PlayerViewRotation.Vector() * Reach;

@@ -7,6 +7,8 @@
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Components/InputComponent.h"
 #include "Grabber.generated.h"
 
 
@@ -32,4 +34,14 @@ private:
     // How far player can reach to grab sth
     float Reach = 100.f;
 	
+    UPhysicsHandleComponent* PhysicsHandle = nullptr;
+    UInputComponent* InputComponent = nullptr;
+
+private:
+
+    void FindPhysicsHandle();
+    void FindInputComponent();
+
+    void Grab(); // grab delegate method
+    void Release(); // release delegate method
 };
