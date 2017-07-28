@@ -52,6 +52,21 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
                 3.f // thickness
     );
 
+    /// Line-trace out to reach distance
+    FHitResult Hit;
+    FCollisionQueryParams QueryParams = FCollisionQueryParams(FName(TEXT("")), false, GetOwner());
 
+    GetWorld()->LineTraceSingleByObjectType(
+                OUT Hit,
+                PlayerViewLocation,
+                LineTraceEnd,
+                FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+                QueryParams);
+
+    /// check what we hit
+    AActor* ActorHit = Hit.GetActor();
+    if (ActorHit) {
+        UE_LOG(LogTemp, Warning, TEXT("Line trace hit: %s"), *(ActorHit->GetName()));
+    }
 }
 
