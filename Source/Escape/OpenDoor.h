@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
 #include "Engine/TriggerVolume.h"
 #include "Engine/World.h"
-#include "GameFramework/PlayerController.h"
 #include "OpenDoor.generated.h"
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -40,8 +41,12 @@ private:
     UPROPERTY(EditAnywhere)
     float DoorCloseDelay = 1.f;
 
-    AActor* TriggerActor;
     AActor* Owner;
     float LastDoorOpenTime;
     float InitialDoorAngleOffset;
+
+private:
+
+    // Total mass of overlapping objects in kg.
+    float GetTotalMassOfActorsOnPlate();
 };
