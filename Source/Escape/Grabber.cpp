@@ -16,6 +16,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
     FVector LineTraceEnd = std::get<1>(GetGrabVector());
+    if (!PhysicsHandle) return;
     if (PhysicsHandle->GrabbedComponent) {
         // move the object that we're holding
         PhysicsHandle->SetTargetLocation(LineTraceEnd);
@@ -30,8 +31,9 @@ void UGrabber::Grab() {
     UPrimitiveComponent* ComponentToGrab = Hit.GetComponent();
     AActor* ActorHit = Hit.GetActor();
 
-    if (!ActorHit) { return; } // guard if ActorHit not nullptr
+    if (!ActorHit) return; // guard if ActorHit not nullptr
     // attach physics handle
+    if (!PhysicsHandle) return;
     PhysicsHandle->GrabComponent(ComponentToGrab,
                                  NAME_None,
                                  ComponentToGrab->GetOwner()->GetActorLocation(),
@@ -40,6 +42,7 @@ void UGrabber::Grab() {
 }
 
 void UGrabber::Release() {
+    if (!PhysicsHandle) return;
     PhysicsHandle->ReleaseComponent();
 }
 

@@ -40,10 +40,12 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType,
 }
 
 void UOpenDoor::OpenTheDoor() {
+    if (!Owner) return;
     Owner->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
 }
 
 void UOpenDoor::CloseTheDoor() {
+    if (!Owner) return;
     Owner->SetActorRotation(FRotator(0.f, InitialDoorAngleOffset, 0.f));
 }
 
@@ -52,6 +54,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate() {
     float TotalMass = 0.f;
     // TODO iterate through all overlaping actors and sum their masses
     TArray<AActor*> ActorsOnPlate;
+    if (!PressurePlate) return TotalMass;
     PressurePlate->GetOverlappingActors(OUT ActorsOnPlate);
 
     for (const auto* Actor: ActorsOnPlate) {
